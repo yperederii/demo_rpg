@@ -6,52 +6,54 @@ internal static class Game
     [System.STAThread]
     public static void Main()
     {
-        Raylib.InitWindow(800, 800, "demo_rpg");
-
         Warrior warrior = new Warrior();
 
-        string initialStateText =
-            $"Class: Warrior\n" +
+        Console.WriteLine("Class: Warrior\n" +
             $"MaxHP: {warrior.Health.MaxHP}\n" +
             $"Current HP: {warrior.Health.CurrentHP}\n" +
             $"Strength: {warrior.Stats.Strength}\n" +
             $"Intelligence: {warrior.Stats.Intelligence}\n" +
             $"LVL: {warrior.CurrentLVL}\n" +
             $"Current EXP: {warrior.CurrentEXP}\n" +
-            $"Needed EXP: {warrior.CalculateExpToNextLVL(warrior.CurrentLVL)}";
+            $"EXP to next LVL: {warrior.CalculateExpToNextLVL(warrior.CurrentLVL)}"
+        );
 
         warrior.Health.TakeDamage(3);
 
-        string damageStateText =
-            $"WARRIOR TOOK 3 DAMAGE\n" +
-            $"Current HP: {warrior.Health.CurrentHP} / {warrior.Health.MaxHP}";
+        Console.WriteLine(
+            $"\nWARRIOR TOOK 3 DAMAGE\n" +
+            $"Current HP: {warrior.Health.CurrentHP} / {warrior.Health.MaxHP}"
+        );
 
-        warrior.GainEXP(50);
+        UInt32 exp = 50;
+        warrior.GainEXP(exp);
 
-        string levelUpStateText =
-            $"+50 EXP\n" +
+        Console.WriteLine(
+            $"\n+{exp} EXP\n" +
             $"MaxHP: {warrior.Health.MaxHP}\n" +
             $"Current HP: {warrior.Health.CurrentHP}\n" +
             $"Strength: {warrior.Stats.Strength}\n" +
             $"Intelligence: {warrior.Stats.Intelligence}\n" +
             $"LVL: {warrior.CurrentLVL}\n" +
             $"Current EXP: {warrior.CurrentEXP}\n" +
-            $"Needed EXP: {warrior.CalculateExpToNextLVL(warrior.CurrentLVL)}";
+            $"EXP to next LVL: {warrior.CalculateExpToNextLVL(warrior.CurrentLVL)}"
+        );
+
+        /*
+
+        Raylib.InitWindow(800, 800, "demo_rpg");
 
         while (!Raylib.WindowShouldClose())
         {
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.White);
 
-            Raylib.DrawText(initialStateText, 12, 12, 20, Color.Black);
-
-            Raylib.DrawText(damageStateText, 12, 225, 20, Color.Red);
-
-            Raylib.DrawText(levelUpStateText, 12, 300, 20, Color.Black);
+            Raylib.DrawText("DEMO_RPG", 12, 12, 20, Color.Black);
 
             Raylib.EndDrawing();
         }
 
         Raylib.CloseWindow();
+        */
     }
 }

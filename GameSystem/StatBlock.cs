@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace demo_rpg.GameSystem
 {
-    public struct StatBlock
+    public class StatBlock
     {
         public ushort Strength { get; set; }
 

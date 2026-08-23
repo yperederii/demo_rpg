@@ -10,7 +10,26 @@ namespace demo_rpg.Entities
 {
     public class Warrior : BaseHero
     {
-        public Warrior() : base(hpGrowth: 5, baseStr: 5, baseInt: 1) { }
+        const ushort HPGROWTH = 5;
+        const ushort STRGROWTH = 5;
+        const ushort INTGROWTH = 1;
 
+        const ushort LVLUPHEAL = 2;
+
+        public Warrior() : base(hpGrowth: HPGROWTH, baseStr: STRGROWTH, baseInt: INTGROWTH) { }
+
+        public override void LVLUp()
+        {
+            base.LVLUp();
+
+            Health.MaxHP += HPGROWTH;
+
+            ushort hpHeal = (ushort)(Health.MaxHP / LVLUPHEAL);
+            Health.Heal(hpHeal);
+
+            Stats.Strength += STRGROWTH;
+            Stats.Intelligence += INTGROWTH;
+
+        }
     }
 }

@@ -19,11 +19,6 @@ namespace demo_rpg.Entities
         public Warrior() : 
             base(hpGrowth: HPGROWTH, baseStr: STRGROWTH, baseInt: INTGROWTH) { }
 
-        public override void LVLUp()
-        {
-            base.LVLUp();
-        }
-
         public override void LVLGain()
         {
             Health.MaxHP += HPGROWTH;

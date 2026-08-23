@@ -39,14 +39,12 @@ namespace demo_rpg.Entities
 
             if (CurrentEXP >= EXPtoNextLVL) 
             {
-                IsLevelable = true;
+                LVLUp();
             }
         }
 
-        public virtual void LVLUp() 
+        protected virtual void LVLUp() 
         {
-            if (!IsLevelable) return;
-
             while (CurrentEXP >= EXPtoNextLVL) 
             {
                 CurrentEXP -= EXPtoNextLVL;
@@ -56,8 +54,6 @@ namespace demo_rpg.Entities
 
                 EXPtoNextLVL = CalculateExpToNextLVL(CurrentLVL);
             }
-
-            IsLevelable = false;
         }
 
         public UInt32 CalculateExpToNextLVL(ushort currentLVL) 

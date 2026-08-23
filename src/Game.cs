@@ -27,7 +27,6 @@ internal static class Game
             $"Current HP: {warrior.Health.CurrentHP} / {warrior.Health.MaxHP}";
 
         warrior.GainEXP(50);
-        warrior.LVLUp();
 
         string levelUpStateText =
             $"+50 EXP\n" +

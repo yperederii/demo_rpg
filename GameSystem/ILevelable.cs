@@ -16,7 +16,6 @@ namespace demo_rpg.GameSystem
         bool IsLevelable { get; }
 
         void GainEXP(UInt32 gainedEXP);
-        void LVLUp();
         void LVLGain();
         UInt32 CalculateExpToNextLVL(ushort currentLVL);
         float GetEXPBonus();

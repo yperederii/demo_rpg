@@ -17,6 +17,7 @@ namespace demo_rpg.GameSystem
 
         void GainEXP(UInt32 gainedEXP);
         void LVLUp();
+        void LVLGain();
         UInt32 CalculateExpToNextLVL(ushort currentLVL);
         float GetEXPBonus();
 
@@ -25,7 +26,5 @@ namespace demo_rpg.GameSystem
         //       = 40
         // lvl 3 = 10 * 3^2
         //       = 90
-        // lvl 4 = 10 * 4^2
-        //       = 160
     }
 }

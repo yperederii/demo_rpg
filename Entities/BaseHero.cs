@@ -52,6 +52,8 @@ namespace demo_rpg.Entities
                 CurrentEXP -= EXPtoNextLVL;
                 CurrentLVL++;
 
+                LVLGain();
+
                 EXPtoNextLVL = CalculateExpToNextLVL(CurrentLVL);
             }
 
@@ -62,6 +64,8 @@ namespace demo_rpg.Entities
         {
             return (UInt32)(ILevelable.LVLScalar * Math.Pow(currentLVL, 2));
         }
+
+        public virtual void LVLGain() { }
 
         public virtual float GetEXPBonus() 
         {

@@ -16,29 +16,24 @@ namespace demo_rpg.Entities
 
         const ushort LVLUPHEAL = 2;
 
-        public Warrior() : base(hpGrowth: HPGROWTH, baseStr: STRGROWTH, baseInt: INTGROWTH) { }
+        public Warrior() : 
+            base(hpGrowth: HPGROWTH, baseStr: STRGROWTH, baseInt: INTGROWTH) { }
 
         public override void LVLUp()
         {
-            ushort previousLevel = CurrentLVL;
-
             base.LVLUp();
+        }
 
-            int levelsGained = CurrentLVL - previousLevel;
+        public override void LVLGain()
+        {
+            Health.MaxHP += HPGROWTH;
 
-            while (levelsGained > 0)
-            {
-                Health.MaxHP += HPGROWTH;
+            ushort hpHeal = (ushort)(Health.MaxHP / LVLUPHEAL);
+            Health.Heal(hpHeal); // warrior class heals with lvlups
+                                 // - later move to cleric
 
-                ushort hpHeal = (ushort)(Health.MaxHP / LVLUPHEAL);
-                Health.Heal(hpHeal);
-
-                Stats.Strength += STRGROWTH;
-                Stats.Intelligence += INTGROWTH;
-
-                levelsGained--;
-            }
-
+            Stats.Strength += STRGROWTH;
+            Stats.Intelligence += INTGROWTH;
         }
     }
 }

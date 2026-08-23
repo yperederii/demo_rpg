@@ -47,11 +47,6 @@ namespace demo_rpg.Entities
         {
             if (!IsLevelable) return;
 
-            CurrentEXP -= EXPtoNextLVL;
-            CurrentLVL++;
-
-            EXPtoNextLVL = CalculateExpToNextLVL(CurrentLVL);
-
             while (CurrentEXP >= EXPtoNextLVL) 
             {
                 CurrentEXP -= EXPtoNextLVL;

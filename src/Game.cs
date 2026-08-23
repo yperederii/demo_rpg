@@ -26,11 +26,11 @@ internal static class Game
             $"WARRIOR TOOK 3 DAMAGE\n" +
             $"Current HP: {warrior.Health.CurrentHP} / {warrior.Health.MaxHP}";
 
-        warrior.GainEXP(10);
+        warrior.GainEXP(50);
         warrior.LVLUp();
 
         string levelUpStateText =
-            $"+10 EXP\n" +
+            $"+50 EXP\n" +
             $"MaxHP: {warrior.Health.MaxHP}\n" +
             $"Current HP: {warrior.Health.CurrentHP}\n" +
             $"Strength: {warrior.Stats.Strength}\n" +

@@ -20,15 +20,24 @@ namespace demo_rpg.Entities
 
         public override void LVLUp()
         {
+            ushort previousLevel = CurrentLVL;
+
             base.LVLUp();
 
-            Health.MaxHP += HPGROWTH;
+            int levelsGained = CurrentLVL - previousLevel;
 
-            ushort hpHeal = (ushort)(Health.MaxHP / LVLUPHEAL);
-            Health.Heal(hpHeal);
+            while (levelsGained > 0)
+            {
+                Health.MaxHP += HPGROWTH;
 
-            Stats.Strength += STRGROWTH;
-            Stats.Intelligence += INTGROWTH;
+                ushort hpHeal = (ushort)(Health.MaxHP / LVLUPHEAL);
+                Health.Heal(hpHeal);
+
+                Stats.Strength += STRGROWTH;
+                Stats.Intelligence += INTGROWTH;
+
+                levelsGained--;
+            }
 
         }
     }

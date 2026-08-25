@@ -9,6 +9,6 @@ namespace demo_rpg.Entities
 {
     public class Wizard : BaseHero
     {
-        public Wizard() : base(hpGrowth: 2, baseStr: 1, baseInt: 5) { }
+        public Wizard() : base(baseHp: 2, baseStr: 1, baseInt: 5) { }
     }
 }

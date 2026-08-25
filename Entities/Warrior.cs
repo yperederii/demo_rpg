@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,25 +11,22 @@ namespace demo_rpg.Entities
 {
     public class Warrior : BaseHero
     {
-        const ushort HPGROWTH = 5;
-        const ushort STRGROWTH = 5;
-        const ushort INTGROWTH = 1;
+        public const ushort BASEHP = 5;
+        public const ushort BASESTR = 5;
+        public const ushort BASEINT = 2;
 
         const ushort LVLUPHEAL = 2;
 
-        public Warrior() : 
-            base(hpGrowth: HPGROWTH, baseStr: STRGROWTH, baseInt: INTGROWTH) { }
+        public Warrior() :
+            base(baseHp: BASEHP, baseStr: BASESTR, baseInt: BASEINT) { }
 
-        public override void LVLGain()
+        protected override void LVLGain(ushort hp, ushort str, ushort intelligence)
         {
-            Health.MaxHP += HPGROWTH;
+            base.LVLGain(hp, str, intelligence);
 
-            ushort hpHeal = (ushort)(Health.MaxHP / LVLUPHEAL);
-            Health.Heal(hpHeal); // warrior class heals with lvlups
-                                 // - later move to cleric
-
-            Stats.Strength += STRGROWTH;
-            Stats.Intelligence += INTGROWTH;
+            ushort hpHeal = (ushort)(Health.Max / LVLUPHEAL);
+            Health.Increase(hpHeal); // warrior class heals with lvlups
+                                     // - later move to cleric
         }
     }
 }

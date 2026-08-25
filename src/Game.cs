@@ -6,37 +6,33 @@ internal static class Game
     [System.STAThread]
     public static void Main()
     {
-        Warrior warrior = new Warrior();
+        BaseHero p1 = new Warrior();
 
-        Console.WriteLine("Class: Warrior\n" +
-            $"MaxHP: {warrior.Health.MaxHP}\n" +
-            $"Current HP: {warrior.Health.CurrentHP}\n" +
-            $"Strength: {warrior.Stats.Strength}\n" +
-            $"Intelligence: {warrior.Stats.Intelligence}\n" +
-            $"LVL: {warrior.CurrentLVL}\n" +
-            $"Current EXP: {warrior.CurrentEXP}\n" +
-            $"EXP to next LVL: {warrior.CalculateExpToNextLVL(warrior.CurrentLVL)}"
+        Console.WriteLine($"Warrior LVL {p1.CurrentLVL}\n" +
+            $"MaxHP: {p1.Health.Max}\n" +
+            $"Current HP: {p1.Health.Current}\n" +
+            $"Strength: {p1.Strength}\n" +
+            $"Intelligence: {p1.Intelligence}\n" +
+            $"EXP: {p1.CurrentEXP} / {p1.CalculateExpToNextLVL(p1.CurrentLVL)}"
         );
 
-        warrior.Health.TakeDamage(3);
+        p1.Health.Reduce(3);
 
         Console.WriteLine(
             $"\nWARRIOR TOOK 3 DAMAGE\n" +
-            $"Current HP: {warrior.Health.CurrentHP} / {warrior.Health.MaxHP}"
+            $"Current HP: {p1.Health.Current} / {p1.Health.Max}"
         );
 
-        UInt32 exp = 50;
-        warrior.GainEXP(exp);
+        p1.GainEXP(100);
+        Console.WriteLine($"\n+{10} EXP");
 
         Console.WriteLine(
-            $"\n+{exp} EXP\n" +
-            $"MaxHP: {warrior.Health.MaxHP}\n" +
-            $"Current HP: {warrior.Health.CurrentHP}\n" +
-            $"Strength: {warrior.Stats.Strength}\n" +
-            $"Intelligence: {warrior.Stats.Intelligence}\n" +
-            $"LVL: {warrior.CurrentLVL}\n" +
-            $"Current EXP: {warrior.CurrentEXP}\n" +
-            $"EXP to next LVL: {warrior.CalculateExpToNextLVL(warrior.CurrentLVL)}"
+            $"Warrior LVL {p1.CurrentLVL}\n" +
+            $"MaxHP: {p1.Health.Max}\n" +
+            $"Current HP: {p1.Health.Current}\n" +
+            $"Strength: {p1.Strength}\n" +
+            $"Intelligence: {p1.Intelligence}\n" +
+            $"EXP: {p1.CurrentEXP} / {p1.CalculateExpToNextLVL(p1.CurrentLVL)}"
         );
 
         /*

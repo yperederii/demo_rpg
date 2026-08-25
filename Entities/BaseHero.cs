@@ -7,28 +7,26 @@ using demo_rpg.GameSystem;
 
 namespace demo_rpg.Entities
 {
-    public abstract class BaseHero : ILevelable
+    public abstract class BaseHero : StatBlock, ILevelable
     {
         public ushort CurrentLVL { get; protected set; } = 1;
         public UInt32 CurrentEXP { get; protected set; } = 0u;
         public UInt32 EXPtoNextLVL { get; protected set; } = 0u;
         public bool IsLevelable { get; protected set; } = false;
 
-        public ushort BaseSTR { get; protected set; }
-        public ushort BaseINT { get; protected set; }
-        public ushort HPGrowth { get; protected set; }
+        public ushort BaseHP { get; set; }
+        public ushort BaseSTR { get; set; }
+        public ushort BaseINT { get; set; }
 
-        public HP Health { get; protected set; }
-        public StatBlock Stats { get; protected set; }
+        public ResourcePool Health { get; protected set; }
 
-        protected BaseHero(ushort hpGrowth, ushort baseStr, ushort baseInt)
+        protected BaseHero(ushort baseHp, ushort baseStr, ushort baseInt) : base(baseStr, baseInt)
         {
-            HPGrowth = hpGrowth;
+            BaseHP = baseHp;
+            Health = new ResourcePool(BaseHP, BaseHP);
+
             BaseSTR = baseStr;
             BaseINT = baseInt;
-
-            Health = new HP(HPGrowth, HPGrowth);
-            Stats = new StatBlock(strength: BaseSTR, intelligence: BaseINT);
         }
 
         public void GainEXP(UInt32 gainedEXP) 
@@ -50,7 +48,7 @@ namespace demo_rpg.Entities
                 CurrentEXP -= EXPtoNextLVL;
                 CurrentLVL++;
 
-                LVLGain();
+                LVLGain(BaseHP, BaseSTR, BaseINT);
 
                 EXPtoNextLVL = CalculateExpToNextLVL(CurrentLVL);
             }
@@ -61,7 +59,12 @@ namespace demo_rpg.Entities
             return (UInt32)(ILevelable.LVLScalar * Math.Pow(currentLVL, 2));
         }
 
-        public virtual void LVLGain() { }
+        protected virtual void LVLGain(ushort hp, ushort str, ushort intelligence) 
+        {
+            Health.Max += (ushort)(hp / 2f);
+            Strength += (ushort)(str / 2f);
+            Intelligence += (ushort)(intelligence / 2f);
+        }
 
         public virtual float GetEXPBonus() 
         {

@@ -8,7 +8,7 @@ internal static class Game
     {
         BaseHero p1 = new Warrior();
 
-        Console.WriteLine($"Warrior LVL {p1.CurrentLVL}\n" +
+        Console.WriteLine($"{p1.GetClassName()} LVL {p1.CurrentLVL}\n" +
             $"MaxHP: {p1.Health.Max}\n" +
             $"Current HP: {p1.Health.Current}\n" +
             $"Strength: {p1.Strength}\n" +
@@ -19,21 +19,21 @@ internal static class Game
         p1.Health.Reduce(3);
 
         Console.WriteLine(
-            $"\nWARRIOR TOOK 3 DAMAGE\n" +
+            $"\n{p1.GetClassName()} TOOK 3 DAMAGE\n" +
             $"Current HP: {p1.Health.Current} / {p1.Health.Max}"
         );
 
-        p1.GainEXP(100);
+        p1.GainEXP(10);
         Console.WriteLine($"\n+{10} EXP");
 
-        Console.WriteLine(
-            $"Warrior LVL {p1.CurrentLVL}\n" +
-            $"MaxHP: {p1.Health.Max}\n" +
-            $"Current HP: {p1.Health.Current}\n" +
-            $"Strength: {p1.Strength}\n" +
-            $"Intelligence: {p1.Intelligence}\n" +
-            $"EXP: {p1.CurrentEXP} / {p1.CalculateExpToNextLVL(p1.CurrentLVL)}"
-        );
+        Console.WriteLine($"{p1.GetClassName()} LVL {p1.CurrentLVL}\n" +
+           $"MaxHP: {p1.Health.Max}\n" +
+           $"Current HP: {p1.Health.Current}\n" +
+           $"Strength: {p1.Strength}\n" +
+           $"Intelligence: {p1.Intelligence}\n" +
+           $"EXP: {p1.CurrentEXP} / {p1.CalculateExpToNextLVL(p1.CurrentLVL)}"
+       );
+
 
         /*
 

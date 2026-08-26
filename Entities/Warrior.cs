@@ -20,9 +20,11 @@ namespace demo_rpg.Entities
         public Warrior() :
             base(baseHp: BASEHP, baseStr: BASESTR, baseInt: BASEINT) { }
 
+        public override string GetClassName() { return "Warrior"; }
+
         protected override void LVLGain(ushort hp, ushort str, ushort intelligence)
         {
-            base.LVLGain(hp, str, intelligence);
+            base.LVLGain(hp, (ushort)(str + 1), intelligence);
 
             ushort hpHeal = (ushort)(Health.Max / LVLUPHEAL);
             Health.Increase(hpHeal); // warrior class heals with lvlups

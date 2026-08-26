@@ -14,9 +14,9 @@ namespace demo_rpg.Entities
         public UInt32 EXPtoNextLVL { get; protected set; } = 0u;
         public bool IsLevelable { get; protected set; } = false;
 
-        public ushort BaseHP { get; set; }
-        public ushort BaseSTR { get; set; }
-        public ushort BaseINT { get; set; }
+        public ushort BaseHP { get; set; } = 1;
+        public ushort BaseSTR { get; set; } = 1;
+        public ushort BaseINT { get; set; } = 1;
 
         public ResourcePool Health { get; protected set; }
 
@@ -28,6 +28,8 @@ namespace demo_rpg.Entities
             BaseSTR = baseStr;
             BaseINT = baseInt;
         }
+
+        public abstract string GetClassName();
 
         public void GainEXP(UInt32 gainedEXP) 
         {

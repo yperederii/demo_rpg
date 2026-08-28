@@ -12,7 +12,11 @@ namespace demo_rpg.Entities
     public class Warrior : BaseHero
     {
         public Warrior() :
-            base(baseHp: 5, baseMp: 1, baseStr: 5, baseInt: 1, baseAgi: 2) { }
+            base(baseHp: 5, baseMp: 1, baseStr: 5, baseInt: 1, baseAgi: 2) 
+        {
+            PhysRes = 2; 
+            MageRes = 2;
+        }
 
         public override string ClassName => "Warrior";
 

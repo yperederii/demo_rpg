@@ -9,13 +9,14 @@ namespace demo_rpg.GameSystem
     public class StatBlock
     {
         public ushort Strength { get; set; }
-
         public ushort Intelligence { get; set; }
+        public ushort Agility { get; set; }
 
-        public StatBlock(ushort strength = 1, ushort intelligence = 1)
+        public StatBlock(ushort str = 1, ushort inl = 1, ushort agi = 1)
         {
-            Strength = strength;
-            Intelligence = intelligence;
+            Strength = str;
+            Intelligence = inl;
+            Agility = agi;
         }
 
     }

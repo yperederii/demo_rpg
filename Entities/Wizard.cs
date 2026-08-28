@@ -9,18 +9,18 @@ namespace demo_rpg.Entities
 {
     public class Wizard : BaseHero
     {
-        public const ushort BASEHP = 2;
-        public const ushort BASESTR = 2;
-        public const ushort BASEINT = 5;
-
         public Wizard() :
-            base(baseHp: BASEHP, baseStr: BASESTR, baseInt: BASEINT) { }
+            base(baseHp: 2, baseMp: 5, baseStr: 2, baseInt: 5, baseAgi: 1) { }
 
-        public override string GetClassName() { return "Wizzard"; }
+        public override string ClassName => "Wizzard";
 
-        protected override void LVLGain(ushort hp, ushort str, ushort intelligence)
+        protected override void LVLGain(ushort hp, ushort mp, ushort str, ushort inl, ushort agi)
         {
-            base.LVLGain(hp, str, (ushort)(intelligence + 1));
+            base.LVLGain(hp, mp, str, (ushort)(inl + 1), agi);
+
+            const ushort MPGAIN = 2;
+            ushort hpHeal = (ushort)(Mana.Max / MPGAIN);
+            Mana.Increase(hpHeal);
         }
     }
 }
